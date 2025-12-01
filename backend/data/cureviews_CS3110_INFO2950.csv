@@ -1,0 +1,107 @@
+review_id,subject,number,course_id,course_title,course_full,review_text,rating,difficulty,workload,professors,date,grade,major,likes,isCovid
+b64l8DJrf,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,3,5.0,Anshuman Mohan,2025-05-19T23:20:08.223Z,A-,Computer Science,0,False
+2kAFZ1Q89,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,3,4.0,Anshuman Mohan,2025-05-10T01:12:55.631Z,A-,Computer Science,0,False
+1rcKWyvfZ,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,2,3.0,Michael Clarkson,2025-05-10T01:11:56.110Z,B+,Computer Science,0,False
+I7KrUMW6Y,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,3,3.0,Anshuman Mohan,2025-05-10T00:47:27.128Z,A+,Computer Science,0,False
+a9QJzzkAK,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,3.0,Anshuman Mohan,2025-05-10T00:37:35.254Z,B,Computer Science,0,False
+nswXGh2vo,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,2,3.0,Anshuman Mohan,2025-05-10T00:27:04.934Z,A,Computer Science,0,False
+62T7wTHE-,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,2,2.0,Anshuman Mohan,2025-05-10T00:17:42.458Z,A,Computer Science,0,False
+h09004x2W,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,5.0,Michael Clarkson,2025-03-19T18:26:17.548Z,A,Computer Science,0,False
+3ww17KBQ6,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,4.0,"Michael Clarkson, Anshuman Mohan",2024-12-17T03:27:02.946Z,A-,Computer Science,0,False
+uyo5o8EcT,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,2,3.0,"Justin Hsu, Dexter Kozen",2024-12-10T22:22:27.285Z,A-,Computer Science,0,False
+p0FzQDvjwY,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,1.0,2,5.0,Michael Clarkson,2024-11-13T20:42:56.649Z,A,Computer Science,0,False
+kS31Wni9F,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,"Nate Foster, Not Listed",2024-02-18T00:36:17.765Z,A-,Computer science,1,False
+-HBwcsK4W,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,4,4.0,Nate Foster,2023-01-13T10:01:53.763Z,,Computer science,0,False
+oJX70N6Ns,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,4.0,Michael Clarkson,2022-12-06T17:32:42.808Z,,Computer science,0,False
+7qWcT8s5x,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,5.0,Michael Clarkson,2022-12-06T07:04:53.268Z,,,0,False
+tLSFrh-DC,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,3.0,Michael Clarkson,2022-12-05T23:02:14.360Z,A,Computer science,0,False
+itzOHLdjw,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,3.0,Michael Clarkson,2022-12-01T04:13:38.822Z,A-,Computer science,0,False
+6ltD_h1M3,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,4.0,Michael Clarkson,2022-11-25T07:46:14.020Z,,"Computer science, Biology/biological sciences",0,True
+Q4uWoHdL0,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,4.0,Nate Foster,2022-11-20T16:49:47.142Z,A,Computer science,0,False
+gEO02uKLM,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,3,3.0,Michael Clarkson,2022-11-18T04:17:50.113Z,,,0,False
+asT6_qhPe,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,3.0,Michael Clarkson,2022-11-18T03:00:51.786Z,A-,Computer and information sciences,0,False
+xj8dPO6-3Q,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,3.0,Michael Clarkson,2022-11-16T20:30:30.740Z,,Computer science,0,False
+cvWx5N274,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,3,4.0,Nate Foster,2022-11-15T23:48:26.224Z,A,Computer science,0,False
+VW08XX6NY,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,4.0,Nate Foster,2022-11-05T16:14:57.688Z,A,Computer science,0,False
+46IE4d9-o,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,3.0,Michael Clarkson,2022-11-05T16:01:06.155Z,,Computer science,0,False
+cEqnt8tIK,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,5.0,Michael Clarkson,2022-04-19T02:47:12.530Z,,,0,False
+WZRcY4Sqw,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,5.0,Michael Clarkson,2022-04-19T02:46:22.890Z,,,0,False
+YpZchR8Jt5,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,2,2.0,Nate Foster,2022-04-16T17:26:19.291Z,,,0,False
+v2Nzjshhi,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,3.0,Michael Clarkson,2022-04-16T17:25:52.337Z,,,0,True
+CDPbxseLj,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,"Michael Clarkson, Nate Foster",2022-04-16T17:18:14.180Z,,,0,False
+1o8F5LsZwq,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,5,4.0,Michael Clarkson,2022-04-16T17:14:10.850Z,,,0,False
+nvDzScdVih,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,3.0,Nate Foster,2022-04-16T17:14:10.147Z,,,0,False
+MVKERzaEp,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,2.0,1,1.0,Nate Foster,2022-02-22T04:35:44.216Z,,,0,False
+UhmBcjxPb,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,3.0,Michael Clarkson,2022-01-24T01:38:50.333Z,,,0,False
+cqgY3x2_N,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,4,3.0,Michael Clarkson,2021-10-15T20:55:01.606Z,,,0,False
+bY7-4-nOv,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,2,2.0,Michael Clarkson,2021-06-05T17:13:10.630Z,,,0,False
+pd6d-8uqbM,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,2,2.0,Michael Clarkson,2021-06-05T17:09:12.348Z,,,0,False
+KP3ZomhTa,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2021-05-07T15:52:31.416Z,,,0,True
+Ioa19zKyN,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,5,5.0,Nate Foster,2021-05-04T19:04:52.461Z,,,0,False
+hpwUK85xO,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2021-05-02T02:00:42.544Z,,,0,True
+-bIssh3hj,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2021-05-02T01:59:58.103Z,,,0,True
+Y3AFtpzEm,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2021-05-02T01:59:14.196Z,,,0,True
+DzWNWtgLz,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2021-05-02T01:58:47.079Z,,,0,True
+FX-_fxpNx,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2021-04-18T20:49:59.258Z,,,0,False
+yvTz3fSod9,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,4.0,Michael Clarkson,2021-04-03T17:40:45.516Z,,,0,False
+1X45ICOov,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,2,3.0,Michael Clarkson,2020-12-14T16:37:18.573Z,,,0,True
+gcWYsymVP,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,4.0,Michael Clarkson,2020-12-10T00:31:37.171Z,,,0,True
+niXRfd-reM,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,2,4.0,Michael Clarkson,2020-10-29T19:17:20.582Z,,,0,False
+45wNSJDSwZPyECtAu,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,5.0,Michael Clarkson,2020-01-20T21:41:54.176Z,,,0,False
+GsJtHtLZbdpgCuke9,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,4,4.0,Michael Clarkson,2019-11-08T19:24:32.325Z,,,1,False
+XGNGxhFzAxa2Ebz7P,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,5.0,Michael Clarkson,2019-11-08T17:09:32.358Z,,,0,False
+S3BvWWAgjoWGnd6ZL,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,4.0,Michael Clarkson,2019-11-08T16:23:48.335Z,,,0,False
+8CsBiEk3D8WrHnSDy,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,4.0,3,3.0,Nate Foster,2019-11-02T16:45:11.933Z,,,1,False
+4m7pkejoNwpejSM39,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,2,2.0,Michael Clarkson,2019-10-21T17:24:58.751Z,,,1,False
+ZnGbXwqhYnC8kEqFL,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,2.0,5,5.0,Nate Foster,2019-05-16T21:17:54.031Z,,,0,False
+ZckErSsMbBuhns3YF,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,3,4.0,Nate Foster,2019-05-11T22:25:34.346Z,,,0,False
+8ELjKdTs5FfY6eSdD,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,5.0,4,5.0,Nate Foster,2019-04-26T00:33:54.341Z,,,3,False
+Sq333MDzjQXDjthak,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,3.0,4,4.0,Michael Clarkson,2019-04-04T15:00:38.453Z,,,0,False
+C6mGyBbywLQCjAdEq,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,4,,Michael Clarkson,2019-01-25T00:43:14.652Z,0,,0,False
+enayoxaCfbTbf2c2z,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,Michael Clarkson,2019-01-21T04:54:48.009Z,6,,0,False
+TdiGiv9YPuDtgw68m,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,4,,Michael Clarkson,2018-11-07T19:56:02.082Z,0,,0,False
+DEZaoHCFZBKWTi6Pp,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,4,,Michael Clarkson,2018-11-03T15:35:13.132Z,5,,0,False
+z38NeLLW2soyHbXax,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,3,,,2018-07-12T15:34:51.020Z,0,,0,False
+D6yPkk4hcFHAqPYYX,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,4,,,2018-06-01T03:32:58.345Z,5,,0,False
+FHRTamopCa75XmJvK,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,,2018-05-12T23:51:34.954Z,5,,0,False
+HSdEknehgZAn4whHB,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,3,,,2018-05-09T05:54:52.218Z,6,,0,False
+zsFRhZMTctNfQExyd,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,,2018-01-16T23:39:14.917Z,5,,0,False
+FiLsq5pww8wDF6S8L,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,,2018-01-12T17:51:42.627Z,0,,0,False
+CZQKJYPQxcxdnxZaD,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,,2017-12-21T03:57:40.512Z,0,,0,False
+3sSgNxQkA2zRdqAKN,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,4,,,2017-12-02T16:41:16.200Z,5,,0,False
+628veroHLLu5NwfLE,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,,2017-11-30T22:24:00.822Z,5,,2,False
+q2qv4MLa8yZmH4eDu,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,5,,,2017-11-27T04:38:10.794Z,5,,0,False
+Nfc27XSxQLwqkycdL,CS,3110,cJSmM8bnwm2QFnmAn,Data Structures and Functional Programming,cs 3110 data structures and functional programming,,,4,,,2017-11-02T05:24:36.817Z,5,,0,False
+EQ2ZZmzDz,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,3,3.0,Allison Koenecke,2025-03-19T20:21:20.661Z,A-,Information Science,0,False
+K73LxFh6A,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,2,4.0,Allison Koenecke,2025-03-19T16:23:51.600Z,A,Computer Science,0,False
+oZdBulg9c,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,1.0,5,5.0,Allison Koenecke,2024-12-14T21:57:49.465Z,B,"Information Science, Systems, and Technology",0,False
+j7WrVQw8n,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,4,4.0,Allison Koenecke,2024-12-06T18:59:41.460Z,A,"Information Science, Systems, and Technology",0,False
+ZvDVdmwen,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,3,3.0,Allison Koenecke,2024-12-06T17:15:23.998Z,A,Mathematics,0,False
+WVDWY9ewH8,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,1.0,4,3.0,Allison Koenecke,2024-09-17T18:07:18.802Z,B,Information technology,1,False
+3UMuiZgdv,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,3,3.0,Not Listed,2023-10-20T19:17:29.787Z,A,Computer and information sciences,0,False
+abReDgb5Y,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,2.0,5,5.0,David Mimno,2022-11-30T20:17:11.682Z,,,1,False
+ZxeyR8sbf,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,3,4.0,David Mimno,2022-11-28T23:42:34.738Z,,,1,False
+O7wcg_GEQ,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,3,3.0,Matthew Wilkens,2022-11-17T16:19:29.590Z,,,1,False
+VKVmw2-Xf,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,2,2.0,David Mimno,2022-11-16T16:53:08.555Z,A,Computer and information sciences,1,False
+VCIeJVXDQ,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,3,3.0,David Mimno,2022-11-15T23:58:54.277Z,,Computer science,1,False
+pTzGZVJXm,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,4,4.0,David Mimno,2022-11-15T23:18:54.506Z,A,Information technology,0,False
+Ls546N80U,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,2,2.0,David Mimno,2022-04-19T19:11:45.339Z,,,0,True
+Is3hZhe3Z,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,2.0,3,3.0,Matthew Wilkens,2022-03-26T16:51:12.215Z,,,0,True
+xZCAHrJa-,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,5.0,4,4.0,Matthew Wilkens,2022-01-30T06:40:30.357Z,,,0,False
+NX1kALUpG,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,4,3.0,Matthew Wilkens,2021-05-07T04:24:00.570Z,,,0,True
+VIymPimpf,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,5,2.0,Matthew Wilkens,2021-04-17T21:31:42.546Z,,,0,True
+C9eDIFhk8,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,5,3.0,Matthew Wilkens,2021-04-17T21:29:43.081Z,,,0,False
+AvY7yxDrj,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,4.0,3,3.0,David Mimno,2021-04-12T23:09:35.665Z,,,1,True
+BHMRAMg49,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,3,3.0,David Mimno,2020-12-11T04:08:30.795Z,,,0,True
+Yrtd0o5fF,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,5.0,3,3.0,David Mimno,2020-12-09T18:15:14.134Z,,,0,False
+tGUJEGJaN,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,5.0,4,3.0,David Mimno,2020-12-09T08:25:10.198Z,,,0,True
+hLTp7PgOt,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,3,3.0,David Mimno,2020-10-22T21:09:58.274Z,,,0,True
+BMnvW3GyW3f7g8gTv,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,5.0,3,4.0,David Mimno,2019-05-17T03:46:49.953Z,,,0,False
+s4GcoiyfuSuHdeSm4,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,3.0,4,3.0,David Mimno,2019-05-02T01:01:35.884Z,,,0,False
+MYANwfdn2JCFStMrR,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,4,,Paul Ginsparg,2018-11-12T03:37:36.594Z,6,,0,False
+XhgvG6fwaAiyiMF3R,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,5,,Paul Ginsparg,2018-11-08T00:06:36.620Z,0,,1,False
+XAsKDk2dmQCDssuc4,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,5,,Paul Ginsparg,2018-10-29T17:02:03.453Z,4,,0,False
+dhP76D6gmNWPZWXLS,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,5,,,2018-05-17T16:28:04.870Z,4,,0,False
+7vtWEePxuQnPmAeKM,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,3,,,2018-04-17T21:13:11.235Z,0,,0,False
+mSvfeWpqms6rc5HwN,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,5,,,2017-11-29T21:04:10.377Z,0,,0,False
+DiC3sJ7cQgKTzdy7D,INFO,2950,E9E4kB73EJwup6L3C,Introduction to Data Science,info 2950 introduction to data science,,,5,,,2017-11-29T20:50:38.463Z,4,,0,False
