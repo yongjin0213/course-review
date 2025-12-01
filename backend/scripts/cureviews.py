@@ -8,6 +8,8 @@ import os
 # Web Scraping Script for CUReviews
 ################################################################################
 
+#TODO currently not pulling text properly
+
 BASE_URL = "https://www.cureviews.org"
 
 
