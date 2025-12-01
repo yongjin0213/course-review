@@ -1,14 +1,11 @@
 import requests
 import pandas as pd
 import os
-
 # from IPython.display import display #delete this if not using in colab
 
 ################################################################################
 # Web Scraping Script for CUReviews
 ################################################################################
-
-#TODO currently not pulling text properly
 
 BASE_URL = "https://www.cureviews.org"
 
@@ -47,24 +44,24 @@ def fetch_course_reviews_df(subject: str, number: str) -> pd.DataFrame:
 
     rows = []
     for r in reviews:
-        rows.append({
-            "subject": subject,
-            "number": number,
-            "course_id": course_id,
-            "course_title": title,
-            "course_full": full_name,
-            "review_id": r["_id"],
-            "review_text": r.get("review_text"),
-            "rating": r.get("rating"),
-            "difficulty": r.get("difficulty"),
-            "workload": r.get("workload"),
-            "date": r.get("date"),
-            "professors": ", ".join(r.get("professors", [])),
-            "grade": r.get("grade"),
-            "major": ", ".join(r.get("major", [])),
-            "likes": r.get("likes", 0),
-            "isCovid": r.get("isCovid", False),
-        })
+      rows.append({
+          "subject": subject,
+          "number": number,
+          "course_id": course_id,
+          "course_title": title,
+          "course_full": full_name,
+          "review_id": r["_id"],
+          "text": r.get('text'),
+          "rating": r.get("rating"),
+          "difficulty": r.get("difficulty"),
+          "workload": r.get("workload"),
+          "date": r.get("date"),
+          "professors": ", ".join(r.get("professors", [])),
+          "grade": r.get("grade"),
+          "major": ", ".join(r.get("major", [])),
+          "likes": r.get("likes", 0),
+          "isCovid": r.get("isCovid", False),
+      })
 
     return pd.DataFrame(rows)
 
