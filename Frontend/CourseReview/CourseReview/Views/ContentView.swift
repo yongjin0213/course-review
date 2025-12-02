@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//
+//  CourseReview
 //
 //  Created by Dheeraj Sai Thota on 11/30/25.
 //
@@ -9,18 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+    
         TabView {
-            Text("Search Screen")
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
+            NavigationStack {
+                SearchView().navigationBarHidden(true)
+            }
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Search")
+            }
             
-            Text("Saved Screen")
-                .tabItem {
-                    Image(systemName: "bookmark.fill")
-                    Text("Saved")
-                }
+            
+            NavigationStack {
+                SavedView().navigationBarHidden(true)
+            }
+            .tabItem {
+                Image(systemName: "bookmark.fill")
+                Text("Saved")
+            }
             
             NavigationStack {
                 ProfileView(profile: sampleProfile)
@@ -39,4 +45,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-

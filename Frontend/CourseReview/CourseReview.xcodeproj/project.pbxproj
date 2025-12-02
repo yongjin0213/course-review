@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B01229212EDE9211008F328C /* CourseReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CourseReview.app; path = "/Users/dheerajthota/Desktop/CourseReview/build/Debug-iphoneos/CourseReview.app"; sourceTree = "<absolute>"; };
-		B01229302EDE9212008F328C /* CourseReviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CourseReviewTests.xctest; path = "/Users/dheerajthota/Desktop/CourseReview/build/Debug-iphoneos/CourseReview.app/PlugIns/CourseReviewTests.xctest"; sourceTree = "<absolute>"; };
-		B012293A2EDE9212008F328C /* CourseReviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CourseReviewUITests.xctest; path = "/Users/dheerajthota/Desktop/CourseReview/build/Debug-iphoneos/CourseReviewUITests-Runner.app/PlugIns/CourseReviewUITests.xctest"; sourceTree = "<absolute>"; };
+		B01229822EDF9961008F328C /* CourseReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B01229832EDF9961008F328C /* CourseReviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CourseReviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B01229842EDF9961008F328C /* CourseReviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CourseReviewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -66,6 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				B01229232EDE9211008F328C /* CourseReview */,
+				B01229822EDF9961008F328C /* CourseReview.app */,
+				B01229832EDF9961008F328C /* CourseReviewTests.xctest */,
+				B01229842EDF9961008F328C /* CourseReviewUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,7 +94,7 @@
 			packageProductDependencies = (
 			);
 			productName = CourseReview;
-			productReference = B01229212EDE9211008F328C /* CourseReview.app */;
+			productReference = B01229822EDF9961008F328C /* CourseReview.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B012292F2EDE9212008F328C /* CourseReviewTests */ = {
@@ -111,7 +114,7 @@
 			packageProductDependencies = (
 			);
 			productName = CourseReviewTests;
-			productReference = B01229302EDE9212008F328C /* CourseReviewTests.xctest */;
+			productReference = B01229832EDF9961008F328C /* CourseReviewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B01229392EDE9212008F328C /* CourseReviewUITests */ = {
@@ -131,7 +134,7 @@
 			packageProductDependencies = (
 			);
 			productName = CourseReviewUITests;
-			productReference = B012293A2EDE9212008F328C /* CourseReviewUITests.xctest */;
+			productReference = B01229842EDF9961008F328C /* CourseReviewUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */

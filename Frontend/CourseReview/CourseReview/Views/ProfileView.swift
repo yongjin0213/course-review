@@ -1,6 +1,6 @@
 //
 //  ProfileView.swift
-//  
+//  CourseReview
 //
 //  Created by Dheeraj Sai Thota on 12/1/25.
 //
