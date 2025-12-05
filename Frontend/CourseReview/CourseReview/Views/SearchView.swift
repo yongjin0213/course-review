@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct SearchView: View {
+    @EnvironmentObject var courseStore: CourseStore
+    
     @State private var searchText: String = ""
     @State private var isEditing: Bool = false
-    @State private var recentSearches: [String] = [
-        "Object-Oriented Programming and Data Structures",
-        "Introduction to Psychology"
-    ]
+    @State private var recentSearches: [String] = []
+    @State private var hasLoadedFromServer = false
     
-    
-    let courses: [Course] = sampleCourses
+    private let recentSearchesKey = "recentSearches"
     
     private var filteredCourses: [Course] {
-        if searchText.trimmingCharacters(in: .whitespaces).isEmpty {
-            return courses
+        let trimmed = searchText.trimmingCharacters(in: .whitespaces)
+        
+        if trimmed.isEmpty {
+            return courseStore.courses
         } else {
-            let text = searchText.lowercased()
-            return courses.filter { course in
+            let text = trimmed.lowercased()
+            return courseStore.courses.filter { course in
                 course.title.lowercased().contains(text) ||
                 course.code.lowercased().contains(text) ||
                 course.department.lowercased().contains(text)
@@ -55,6 +56,16 @@ struct SearchView: View {
                 }
             }
         }
+        .onAppear {
+            loadRecentSearches()
+            
+            if !hasLoadedFromServer {
+                hasLoadedFromServer = true
+                Task {
+                    await courseStore.reloadFromServer()
+                }
+            }
+        }
     }
     
     private var header: some View {
@@ -72,17 +83,23 @@ struct SearchView: View {
         }
     }
     
-    
     private var searchBar: some View {
         HStack(spacing: 8) {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.secondary)
             
-            TextField("Search courses here...", text: $searchText, onEditingChanged: { editing in
-                isEditing = editing
-            })
+            TextField(
+                "Search courses here...",
+                text: $searchText,
+                onEditingChanged: { editing in
+                    isEditing = editing
+                }
+            )
             .textInputAutocapitalization(.never)
             .disableAutocorrection(true)
+            .onSubmit {
+                addToRecentSearches(from: searchText)
+            }
             
             if !searchText.isEmpty {
                 Button(action: {
@@ -103,6 +120,40 @@ struct SearchView: View {
         }
     }
     
+    private func addToRecentSearches(from term: String) {
+        let trimmed = term.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        
+        recentSearches.removeAll { existing in
+            existing.lowercased() == trimmed.lowercased()
+        }
+        
+        recentSearches.insert(trimmed, at: 0)
+        
+        if recentSearches.count > 5 {
+            recentSearches.removeLast(recentSearches.count - 5)
+        }
+        
+        saveRecentSearches()
+    }
+    
+    private func loadRecentSearches() {
+        if let data = UserDefaults.standard.data(forKey: recentSearchesKey),
+           let decoded = try? JSONDecoder().decode([String].self, from: data) {
+            recentSearches = decoded
+        } else {
+            recentSearches = [
+                "Object-Oriented Programming and Data Structures",
+                "Introduction to Psychology"
+            ]
+        }
+    }
+    
+    private func saveRecentSearches() {
+        if let data = try? JSONEncoder().encode(recentSearches) {
+            UserDefaults.standard.set(data, forKey: recentSearchesKey)
+        }
+    }
     
     private var recentSearchSection: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -116,6 +167,7 @@ struct SearchView: View {
                     RecentSearchRowView(text: text) {
                         searchText = text
                         isEditing = true
+                        addToRecentSearches(from: text)
                     }
                 }
             }
@@ -123,30 +175,45 @@ struct SearchView: View {
         }
     }
     
-    
     private var courseListSection: some View {
         VStack(spacing: 12) {
             ForEach(filteredCourses) { course in
-                CourseCardView(course: course)
-                    .padding(.horizontal, 16)
+                NavigationLink(destination: CourseDetailView(courseCode: course.code)) {
+                    CourseCardView(course: course) {
+                        courseStore.toggleBookmark(for: course)
+                    }
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal, 16)
             }
         }
         .padding(.top, 8)
     }
 }
 
-
 struct CourseCardView: View {
     let course: Course
+    let onBookmarkTapped: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                SmallTagView(text: course.code, background: Color(red: 0.88, green: 0.20, blue: 0.20), textColor: .white)
-                SmallTagView(text: course.term, background: Color(.systemGray5), textColor: .primary)
+                SmallTagView(
+                    text: course.code,
+                    background: Color(red: 0.88, green: 0.20, blue: 0.20),
+                    textColor: .white
+                )
+                SmallTagView(
+                    text: course.term,
+                    background: Color(.systemGray5),
+                    textColor: .primary
+                )
                 Spacer()
-                Image(systemName: course.isBookmarked ? "bookmark.fill" : "bookmark")
-                    .foregroundColor(course.isBookmarked ? .black : .secondary)
+                Button(action: onBookmarkTapped) {
+                    Image(systemName: course.isBookmarked ? "bookmark.fill" : "bookmark")
+                        .foregroundColor(course.isBookmarked ? .black : .secondary)
+                }
+                .buttonStyle(.plain)
             }
             
             Text(course.title)
@@ -158,9 +225,21 @@ struct CourseCardView: View {
                 .foregroundColor(.secondary)
             
             HStack(spacing: 6) {
-                SmallTagView(text: "Workload \(String(format: "%.1f", course.workloadScore))", background: Color(red: 0.93, green: 0.98, blue: 0.93), textColor: Color(red: 0.12, green: 0.46, blue: 0.18))
-                SmallTagView(text: "\(course.reviewCount) Reviews", background: Color(red: 0.95, green: 0.96, blue: 0.99), textColor: Color(red: 0.16, green: 0.35, blue: 0.77))
-                SmallTagView(text: "Rating \(String(format: "%.1f", course.ratingScore))", background: Color(red: 0.99, green: 0.93, blue: 0.93), textColor: Color(red: 0.75, green: 0.12, blue: 0.07))
+                SmallTagView(
+                    text: "Workload \(String(format: "%.1f", course.workloadScore))",
+                    background: Color(red: 0.93, green: 0.98, blue: 0.93),
+                    textColor: Color(red: 0.12, green: 0.46, blue: 0.18)
+                )
+                SmallTagView(
+                    text: "\(course.reviewCount) Reviews",
+                    background: Color(red: 0.95, green: 0.96, blue: 0.99),
+                    textColor: Color(red: 0.16, green: 0.35, blue: 0.77)
+                )
+                SmallTagView(
+                    text: "Rating \(String(format: "%.1f", course.ratingScore))",
+                    background: Color(red: 0.99, green: 0.93, blue: 0.93),
+                    textColor: Color(red: 0.75, green: 0.12, blue: 0.07)
+                )
             }
             .padding(.top, 4)
         }
@@ -198,7 +277,6 @@ struct RecentSearchRowView: View {
                     .foregroundColor(.primary)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
-                
                 Spacer()
             }
             .padding(12)
@@ -206,11 +284,5 @@ struct RecentSearchRowView: View {
             .cornerRadius(12)
             .shadow(color: Color.black.opacity(0.03), radius: 4, x: 0, y: 2)
         }
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
     }
 }

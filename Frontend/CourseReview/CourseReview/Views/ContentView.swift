@@ -9,19 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-    
         TabView {
             NavigationStack {
-                SearchView().navigationBarHidden(true)
+                SearchView()
+                    .navigationBarHidden(true)
             }
             .tabItem {
                 Image(systemName: "magnifyingglass")
                 Text("Search")
             }
             
-            
             NavigationStack {
-                SavedView().navigationBarHidden(true)
+                SavedView()
+                    .navigationBarHidden(true)
             }
             .tabItem {
                 Image(systemName: "bookmark.fill")
@@ -29,7 +29,7 @@ struct ContentView: View {
             }
             
             NavigationStack {
-                ProfileView(profile: sampleProfile)
+                ProfileView()
             }
             .tabItem {
                 Image(systemName: "person.circle.fill")
@@ -37,11 +37,5 @@ struct ContentView: View {
             }
         }
         .accentColor(.red)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

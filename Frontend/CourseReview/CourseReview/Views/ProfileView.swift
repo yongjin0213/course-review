@@ -9,7 +9,12 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    let profile: UserProfile
+    @State private var profile: UserProfile = ProfileView.loadProfile()
+    @State private var isEditingBasicInfo = false
+    @State private var isEditingInterests = false
+    @State private var isEditingPreferences = false
+    
+    private static let profileKey = "userProfile"
     
     var body: some View {
         ZStack {
@@ -21,9 +26,18 @@ struct ProfileView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {
-                        ProfileInfoCardView(profile: profile)
-                        InterestCardView(tags: profile.areasOfInterest)
-                        PreferenceCardView(tags: profile.learningPreferences)
+                        ProfileInfoCardView(
+                            profile: profile,
+                            onEditTapped: { isEditingBasicInfo = true }
+                        )
+                        InterestCardView(
+                            tags: profile.areasOfInterest,
+                            onEditTapped: { isEditingInterests = true }
+                        )
+                        PreferenceCardView(
+                            tags: profile.learningPreferences,
+                            onEditTapped: { isEditingPreferences = true }
+                        )
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 16)
@@ -32,8 +46,28 @@ struct ProfileView: View {
             }
         }
         .navigationBarHidden(true)
+        .sheet(isPresented: $isEditingBasicInfo) {
+            EditProfileSheet(profile: $profile)
+        }
+        .sheet(isPresented: $isEditingInterests) {
+            EditTagsSheet(
+                tags: $profile.areasOfInterest,
+                title: "Areas of Interest"
+            )
+        }
+        .sheet(isPresented: $isEditingPreferences) {
+            EditTagsSheet(
+                tags: $profile.learningPreferences,
+                title: "Learning Preferences"
+            )
+        }
+        .onAppear {
+            profile = ProfileView.loadProfile()
+        }
+        .onChange(of: profile) { _ in
+            saveProfile()
+        }
     }
-    
     
     private var header: some View {
         ZStack(alignment: .bottomLeading) {
@@ -57,19 +91,27 @@ struct ProfileView: View {
             .padding(.bottom, 70)
         }
     }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            ProfileView(profile: sampleProfile)
+    
+    private static func loadProfile() -> UserProfile {
+        if let data = UserDefaults.standard.data(forKey: profileKey),
+           let decoded = try? JSONDecoder().decode(UserProfile.self, from: data) {
+            return decoded
+        } else {
+            return sampleProfile
+        }
+    }
+    
+    private func saveProfile() {
+        if let data = try? JSONEncoder().encode(profile) {
+            UserDefaults.standard.set(data, forKey: Self.profileKey)
         }
     }
 }
 
-
 struct ProfileInfoCardView: View {
     let profile: UserProfile
+    let onEditTapped: () -> Void
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
@@ -96,9 +138,7 @@ struct ProfileInfoCardView: View {
                 }
             }
             
-            Button(action: {
-                // will do later
-            }) {
+            Button(action: onEditTapped) {
                 HStack(spacing: 8) {
                     Image(systemName: "pencil")
                     Text("Edit Profile")
@@ -119,6 +159,8 @@ struct ProfileInfoCardView: View {
 
 struct InterestCardView: View {
     let tags: [String]
+    let onEditTapped: () -> Void
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
@@ -131,9 +173,7 @@ struct InterestCardView: View {
             
             TagListView(tags: tags)
             
-            Button(action: {
-                //will do later
-            }) {
+            Button(action: onEditTapped) {
                 HStack(spacing: 8) {
                     Image(systemName: "pencil")
                     Text("Edit Areas of Interest")
@@ -154,6 +194,8 @@ struct InterestCardView: View {
 
 struct PreferenceCardView: View {
     let tags: [String]
+    let onEditTapped: () -> Void
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
@@ -166,9 +208,7 @@ struct PreferenceCardView: View {
             
             TagListView(tags: tags)
             
-            Button(action: {
-                //Will do later
-            }) {
+            Button(action: onEditTapped) {
                 HStack(spacing: 8) {
                     Image(systemName: "pencil")
                     Text("Edit Preferences")
@@ -214,5 +254,121 @@ struct TagView: View {
                 Capsule()
                     .stroke(Color.primary.opacity(0.25), lineWidth: 1)
             )
+    }
+}
+
+struct EditProfileSheet: View {
+    @Binding var profile: UserProfile
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var name: String
+    @State private var classYear: String
+    @State private var major: String
+    @State private var minor: String
+    
+    init(profile: Binding<UserProfile>) {
+        _profile = profile
+        _name = State(initialValue: profile.wrappedValue.name)
+        _classYear = State(initialValue: profile.wrappedValue.classYear)
+        _major = State(initialValue: profile.wrappedValue.major)
+        _minor = State(initialValue: profile.wrappedValue.minor ?? "")
+    }
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(header: Text("Basic Information")) {
+                    TextField("Name", text: $name)
+                    TextField("Class Year", text: $classYear)
+                    TextField("Major", text: $major)
+                    TextField("Minor (optional)", text: $minor)
+                }
+            }
+            .navigationTitle("Edit Profile")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        profile.name = name
+                        profile.classYear = classYear
+                        profile.major = major
+                        let trimmedMinor = minor.trimmingCharacters(in: .whitespacesAndNewlines)
+                        profile.minor = trimmedMinor.isEmpty ? nil : trimmedMinor
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct EditTagsSheet: View {
+    @Binding var tags: [String]
+    let title: String
+    
+    @Environment(\.dismiss) private var dismiss
+    @State private var newTag: String = ""
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(header: Text("Current \(title)")) {
+                    if tags.isEmpty {
+                        Text("No items yet.")
+                            .foregroundColor(.secondary)
+                    } else {
+                        ForEach(tags.indices, id: \.self) { index in
+                            HStack {
+                                Text(tags[index])
+                                Spacer()
+                                Button(role: .destructive) {
+                                    tags.remove(at: index)
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
+                                .buttonStyle(.borderless)
+                            }
+                        }
+                    }
+                }
+                
+                Section(header: Text("Add New")) {
+                    HStack {
+                        TextField("Enter new item", text: $newTag)
+                        Button("Add") {
+                            addTag()
+                        }
+                        .disabled(newTag.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
+                }
+            }
+            .navigationTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func addTag() {
+        let trimmed = newTag.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        
+        if !tags.contains(where: { $0.lowercased() == trimmed.lowercased() }) {
+            tags.append(trimmed)
+        }
+        newTag = ""
     }
 }

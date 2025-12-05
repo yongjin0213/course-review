@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct UserProfile {
-    let name: String
-    let classYear: String
-    let major: String
-    let minor: String?
-    let areasOfInterest: [String]
-    let learningPreferences: [String]
+struct UserProfile: Codable, Equatable {
+    var name: String
+    var classYear: String
+    var major: String
+    var minor: String?
+    var areasOfInterest: [String]
+    var learningPreferences: [String]
 }
 
 let sampleProfile = UserProfile(

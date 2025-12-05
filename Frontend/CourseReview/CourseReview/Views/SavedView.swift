@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SavedView: View {
-    let courses: [Course] = sampleCourses
+    @EnvironmentObject var courseStore: CourseStore
     
     private var savedCourses: [Course] {
-        courses.filter { $0.isBookmarked }
+        courseStore.courses.filter { $0.isBookmarked }
     }
     
     var body: some View {
@@ -34,8 +34,13 @@ struct SavedView: View {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 12) {
                             ForEach(savedCourses) { course in
-                                CourseCardView(course: course)
-                                    .padding(.horizontal, 16)
+                                NavigationLink(destination: CourseDetailView(courseCode: course.code)) {
+                                    CourseCardView(course: course) {
+                                        courseStore.toggleBookmark(for: course)
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                                .padding(.horizontal, 16)
                             }
                         }
                         .padding(.top, 16)
@@ -67,11 +72,5 @@ struct SavedView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 65)
         }
-    }
-}
-
-struct SavedView_Previews: PreviewProvider {
-    static var previews: some View {
-        SavedView()
     }
 }

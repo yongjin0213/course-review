@@ -15,17 +15,20 @@ struct CourseReviewApp: App {
             Item.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    
+    @StateObject private var courseStore = CourseStore()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(courseStore)
         }
         .modelContainer(sharedModelContainer)
     }
