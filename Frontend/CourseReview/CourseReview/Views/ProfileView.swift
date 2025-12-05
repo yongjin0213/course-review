@@ -77,9 +77,6 @@ struct ProfileView: View {
                 .ignoresSafeArea(edges: .top)
             
             HStack(spacing: 16) {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 64, height: 64)
                 
                 Text("Your Profile")
                     .font(.system(size: 32, weight: .bold, design: .rounded))

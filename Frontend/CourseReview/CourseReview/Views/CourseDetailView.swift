@@ -8,31 +8,11 @@
 import SwiftUI
 
 struct CourseReview: Identifiable {
-    let id = UUID()
-    let professor: String
-    let grade: String
-    let major: String
+    let id: Int
+    let source: String
     let rating: Int
-    let difficulty: Int
-    let workload: Int
-    let comment: String
-    let dateString: String
+    let content: String
 }
-
-let sampleReviewsByCourse: [String: [CourseReview]] = [
-    "CS 2110": [
-        CourseReview(
-            professor: "Anushman Mohan",
-            grade: "A-",
-            major: "Computer Science",
-            rating: 3,
-            difficulty: 3,
-            workload: 5,
-            comment: "Weekly projects were very time consuming.",
-            dateString: "5/19/2025"
-        )
-    ]
-]
 
 enum ReviewTab: String, CaseIterable {
     case all = "All"
@@ -45,14 +25,14 @@ struct CourseDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
     let courseCode: String
+    
     @State private var selectedTab: ReviewTab = .all
+    @State private var reviews: [CourseReview] = []
+    @State private var isLoadingReviews = false
+    @State private var reviewLoadError: String? = nil
     
     private var course: Course? {
         courseStore.courses.first { $0.code == courseCode }
-    }
-    
-    private var reviews: [CourseReview] {
-        sampleReviewsByCourse[courseCode] ?? []
     }
     
     var body: some View {
@@ -61,7 +41,6 @@ struct CourseDetailView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                topBar
                 
                 if let course = course {
                     ScrollView(showsIndicators: false) {
@@ -85,23 +64,8 @@ struct CourseDetailView: View {
                 }
             }
         }
-    }
-    
-    private var topBar: some View {
-        ZStack {
-            Color(.systemGray5)
-                .frame(height: 44)
-                .ignoresSafeArea(edges: .top)
-            
-            HStack {
-                Button(action: { dismiss() }) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.primary)
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 16)
+        .onAppear {
+            loadReviewsIfNeeded()
         }
     }
     
@@ -172,7 +136,20 @@ struct CourseDetailView: View {
         VStack(alignment: .leading, spacing: 12) {
             switch selectedTab {
             case .all, .cuReviews:
-                if reviews.isEmpty {
+                if isLoadingReviews {
+                    HStack {
+                        ProgressView()
+                        Text("Loading reviews...")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.top, 8)
+                } else if let message = reviewLoadError {
+                    Text(message)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                } else if reviews.isEmpty {
                     Text("No reviews yet.")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -182,11 +159,42 @@ struct CourseDetailView: View {
                         ReviewCardView(review: review)
                     }
                 }
+                
             case .roster:
                 Text("Class roster data coming soon.")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding(.top, 8)
+            }
+        }
+    }
+    
+    
+    private func loadReviewsIfNeeded() {
+        guard let course = course,
+              reviews.isEmpty,
+              !isLoadingReviews else { return }
+        
+        isLoadingReviews = true
+        reviewLoadError = nil
+        
+        Task { @MainActor in
+            do {
+                let apiReviews = try await NetworkManager.shared.fetchReviews(forCourseId: course.backendId)
+                let mapped = apiReviews.map { api in
+                    CourseReview(
+                        id: api.id,
+                        source: api.source,
+                        rating: api.rating,
+                        content: api.content
+                    )
+                }
+                reviews = mapped
+                isLoadingReviews = false
+            } catch {
+                print("Failed to load reviews: \(error)")
+                reviewLoadError = "Failed to load reviews."
+                isLoadingReviews = false
             }
         }
     }
@@ -197,44 +205,21 @@ struct ReviewCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 4) {
-                    labelValueRow(label: "Professor", value: review.professor, bold: true)
-                    labelValueRow(label: "Grade", value: review.grade)
-                    labelValueRow(label: "Major", value: review.major, bold: true)
-                }
-                
-                Spacer(minLength: 0)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    labelValueRow(label: "Rating", value: "\(review.rating)")
-                    labelValueRow(label: "Difficulty", value: "\(review.difficulty)")
-                    labelValueRow(label: "Workload", value: "\(review.workload)")
-                }
+            HStack {
+                Text(review.source)
+                    .font(.subheadline.weight(.semibold))
+                Spacer()
+                Text("Rating: \(review.rating)")
+                    .font(.subheadline)
             }
             
-            Text(review.comment)
+            Text(review.content)
                 .font(.subheadline)
                 .fixedSize(horizontal: false, vertical: true)
-            
-            Text(review.dateString)
-                .font(.caption)
-                .foregroundColor(.secondary)
         }
         .padding(16)
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 3)
-    }
-    
-    private func labelValueRow(label: String, value: String, bold: Bool = false) -> some View {
-        HStack(spacing: 4) {
-            Text(label)
-                .font(.caption)
-                .foregroundColor(.secondary)
-            Spacer()
-            Text(value)
-                .font(bold ? .subheadline.weight(.semibold) : .subheadline)
-        }
     }
 }

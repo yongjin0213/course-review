@@ -5,6 +5,7 @@
 //  Created by Dheeraj Sai Thota on 12/2/25.
 //
 
+
 import Foundation
 
 struct Course: Identifiable {
@@ -22,7 +23,6 @@ struct Course: Identifiable {
     let aiReview: String?
     var isBookmarked: Bool
 }
-
 
 let sampleCourses: [Course] = [
     Course(
@@ -69,7 +69,6 @@ let sampleCourses: [Course] = [
     )
 ]
 
-
 @MainActor
 final class CourseStore: ObservableObject {
     @Published var courses: [Course]
@@ -101,36 +100,36 @@ final class CourseStore: ObservableObject {
         UserDefaults.standard.set(codes, forKey: bookmarkDefaultsKey)
     }
     
-    
     func reloadFromServer() async {
         do {
             let apiCourses = try await NetworkManager.shared.fetchCourses()
             let storedCodes = UserDefaults.standard.stringArray(forKey: bookmarkDefaultsKey) ?? []
-            
             func department(from code: String) -> String {
                 let prefix = code.split(separator: " ").first.map(String.init) ?? ""
                 return prefix.isEmpty ? "Unknown" : prefix
             }
             
             let remoteCourses: [Course] = apiCourses.map { api in
-                Course(
+                let sample = sampleCourses.first { $0.code == api.code }
+                
+                return Course(
                     backendId: api.id,
                     code: api.code,
                     title: api.title,
-                    instructor: api.professor,
-                    term: api.term,
-                    department: department(from: api.code),
-                    credit: api.credit,
-                    workloadScore: 0.0,
-                    ratingScore: 0.0,
-                    reviewCount: api.reviews.count,
+                    instructor: sample?.instructor ?? "",
+                    term: sample?.term ?? "",
+                    department: sample?.department ?? department(from: api.code),
+                    credit: sample?.credit ?? 0,
+                    workloadScore: sample?.workloadScore ?? 0.0,
+                    ratingScore: sample?.ratingScore ?? 0.0,
+                    reviewCount: sample?.reviewCount ?? 0,
                     aiReview: api.aiReview,
                     isBookmarked: storedCodes.contains(api.code)
                 )
             }
             let existingCodes = Set(remoteCourses.map { $0.code })
-            let filteredSamples = sampleCourses.filter { !existingCodes.contains($0.code) }
-            courses = filteredSamples + remoteCourses
+            let extraSamples = sampleCourses.filter { !existingCodes.contains($0.code) }
+            courses = extraSamples + remoteCourses
         } catch {
             print("Failed to fetch courses: \(error)")
         }

@@ -59,12 +59,9 @@ struct SavedView: View {
                 .ignoresSafeArea(edges: .top)
             
             HStack(spacing: 16) {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 48, height: 48)
                 
                 Text("Saved")
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
                 Spacer()

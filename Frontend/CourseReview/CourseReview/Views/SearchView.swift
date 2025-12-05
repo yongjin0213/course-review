@@ -76,7 +76,7 @@ struct SearchView: View {
                 .ignoresSafeArea(edges: .top)
             
             Text("Course Reviews")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .font(.system(size: 32, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 24)
                 .padding(.bottom, 65)
