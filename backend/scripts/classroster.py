@@ -217,3 +217,16 @@ Example:
 
     print(f"[INFO] Wrote {len(df)} unique rows to '{filename}'")
     print(df)
+
+if __name__ == "__main__":
+    classes_to_fetch = [
+        ("SP26", "CS", "1110"),
+        ("SP26", "CS", "1998"),
+        ("SP26", "CS", "2110"),
+        ("SP26", "CS", "2800"),
+        ("SP26", "CS", "3110"),
+        ("SP26", "CS", "3410"),
+        ("SP26", "CS", "4410"),
+        ("SP26", "ECE", "2300"),
+    ]
+    main(classes_to_fetch, filename="../data/roster_courses.csv")

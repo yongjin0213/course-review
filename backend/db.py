@@ -18,7 +18,10 @@ class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String, nullable=False) # Course title (e.g. "Introduction to Backend Development")
     code = db.Column(db.String, nullable=False) # Course code (e.g. "CS 1998")
-    ai_review = db.Column(db.String, nullable=False)
+    professor = db.Column(db.String, nullable=False)
+    term = db.Column(db.String, nullable=False) # Semester offered
+    credit = db.Column(db.Integer, nullable=False)
+    ai_review = db.Column(db.String, nullable=True)
 
     reviews = db.relationship("Review", cascade="delete")
     users = db.relationship("User", secondary=association_table, back_populates="courses")
@@ -28,6 +31,9 @@ class Course(db.Model):
             "id": self.id,
             "title": self.title,
             "code": self.code,
+            "professor": self.professor,
+            "term": self.term,
+            "credit": self.credit,
             "ai_review": self.ai_review,
             "reviews": [r.serialize_no_course() for r in self.reviews]
         }
@@ -46,7 +52,7 @@ class Review(db.Model):
     __tablename__ = "review"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    source = db.Column(db.String, nullable=False) # CU Review, Reddit, Class Roster, etc
+    source = db.Column(db.String, nullable=False) # CU Review, Rate My Prof, etc
     content = db.Column(db.String, nullable=False) # The review itself (e.g. "Backend dev was so fun and productive!")
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
 
@@ -70,7 +76,7 @@ class User(db.Model):
     name = db.Column(db.String, nullable=False)
     netid = db.Column(db.String, nullable=False)
 
-    courses = db.relationship("Course", secondary=association_table, back_populates="users") # List of courses that the user "favorites"
+    courses = db.relationship("Course", secondary=association_table, back_populates="users") # List of courses that the user "saved"
 
     def serialize(self):
         return {
