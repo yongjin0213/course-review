@@ -82,6 +82,25 @@ def create_user():
         new_user.serialize(), 201
     )
 
+@app.route("/api/users")
+def get_all_users():
+    users = User.query.all()
+
+    return success_response(
+        {"users": [u.serialize_no_courses() for u in users]}
+    )
+
+@app.route("/api/users/<int:user_id>")
+def get_user_id(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return failure_response("Could not find the user you are searching for", 404)
+
+    return success_response(
+        {"user": user.serialize()}
+    )
+
 @app.route("/api/saved/<int:user_id>")
 def get_user_saved(user_id):
     user = User.query.get(user_id)
@@ -93,13 +112,50 @@ def get_user_saved(user_id):
 
 @app.route("/api/<int:user_id>/saved", methods=["POST"])
 def create_user_saved(user_id):
-    
-    return {
-    }
+    body = json.loads(request.data)
+    course_id = body.get("course_id")
+
+    course = Course.query.get(course_id)
+    user = User.query.get(user_id)
+
+    if not course:
+        return failure_response(f"Could not find user with id {user_id}", 404)
+
+    if not user:
+        return failure_response(f"Could not find course with id {course_id}", 404)
+
+    user.courses.append(course)
+
+    db.session.commit()
+
+    saved_courses = user.courses
+
+    return success_response(
+        {"saved_courses": [c.serialize_minimal() for c in saved_courses]}, 200
+    )
     
 @app.route("/api/<int:user_id>/saved", methods=["DELETE"])
 def remove_user_saved(user_id):
-    return {}
+    body = json.loads(request.data)
+    course_id = body.get("course_id")
+
+    course = Course.query.get(course_id)
+    user = User.query.get(user_id)
+
+    if not course:
+        return failure_response(f"Could not find user with id {user_id}", 404)
+
+    if not user:
+        return failure_response(f"Could not find course with id {course_id}", 404)
+
+    user.courses.remove(course)
+    db.session.commit()
+
+    saved_courses = user.courses
+
+    return success_response(
+        {"saved_courses": [c.serialize_minimal() for c in saved_courses]}, 200
+    )
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
