@@ -2,6 +2,7 @@ from flask import Flask, request
 import json
 from db import db, Course, Review, User
 import os
+from scripts.pipeline_load_all import run_pipeline
 
 app = Flask(__name__)
 db_filename = "coursereview.db"
@@ -156,6 +157,15 @@ def remove_user_saved(user_id):
     return success_response(
         {"saved_courses": [c.serialize_minimal() for c in saved_courses]}, 200
     )
+
+@app.route("/api/admin/retrieve-data", methods=["POST"])
+def retrieve_data():
+    try:
+        run_pipeline()
+        return {"ok": True, "message": "Data successfully retrieved."}, 200
+    
+    except Exception as e:
+        return {"ok": False, "message": f"Pipeline failed: {e}"}, 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
