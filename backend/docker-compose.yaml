@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  coursely:
+    image: "yl2889/coursely:latest"
+    ports:
+      - "8000:8000"
+    # .env-file: .env
