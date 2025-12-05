@@ -110,7 +110,7 @@ def load_rmp_reviews_from_db():
                 review = Review(
                     course_id=course.id,
                     source="RMP",
-                    comment=r["comment"]
+                    content=r["comment"]
                 )
                 db.session.add(review)
 

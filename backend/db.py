@@ -35,7 +35,7 @@ class Course(db.Model):
             "term": self.term,
             "credit": self.credit,
             "ai_review": self.ai_review,
-            "reviews": [r.serialize_no_course() for r in self.reviews]
+            "reviews": [r.serialize() for r in self.reviews]
         }
 
     def serialize_minimal(self):
