@@ -3,8 +3,8 @@
 # the course that the user is searching for, and saves it into the database. 
 
 import requests
-from backend.app import app
-from backend.db import db, Course, Review
+from flask import current_app
+from db import db, Course, Review
 
 RMP_URL = "https://www.ratemyprofessors.com/graphql"
 HEADERS = {"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"}
@@ -86,8 +86,8 @@ def filter_reviews_for_course(reviews, course_code):
 # Main Pipeline
 # ------------------------
 
-def load_rmp_reviews_from_db():
-    with app.app_context():
+def load_rmp_reviews_to_db():
+    with current_app.app_context():
         courses = Course.query.all()
 
         for course in courses:
