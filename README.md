@@ -1,6 +1,8 @@
 # Course Review
 Course-Review / Coursely is a full-stack app that lets you learn about Cornell courses and see reviews from multiple sources compiled together on our ios app.
 
+The main entrypoint is a list of all of the courses in the database, as well as search. Each course has menus of reviews from the different sources in scripts, which is built to scale as we add more sources. The second tab contains saveable courses, and the final tab stores the user's profile, interests, and learning preferences
+
 ## Tech Stack
 
 **Frontend**
