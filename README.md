@@ -17,7 +17,9 @@ Course-Review / Coursely is a full-stack app that lets you learn about Cornell c
 ## Project Structure
 From the root, the Frontend and backend directories contain their respective code
 
-## Backend Setup
+## Backend 
+
+### Setup
 After cloning the repo, either use docker or manually run with python:
 Docker-compose: (bash)
 cd backend
@@ -37,7 +39,7 @@ python3 app.py
 
 By default the app runs on port 8000
 
-## API Spec/Reference
+### API Spec/Reference
 
 We've listed out the API spec on this google doc:
 https://docs.google.com/document/d/1ei5mB8mGV_MjvtZhFHpPzJ1BjBDc4kmkx27oqZsDY9M/edit?usp=drivesdk
@@ -46,6 +48,9 @@ Data loading endpoint:
 @app.route("/api/admin/retrieve-data", methods=["POST"])
 This endpoint is an admin endpoint meant to load the scraped data from the scripts directory in backend. We have 3 implemented scripts to pull from the Rate My Professor (not implemented on frontend), CUReviews, and Class roster. Then this endpoint runs our loading pipeline and fills the SQLite database.
 
+### General setup
+
+We have 3 main parts of the backend: db.py, app.py, scripts/. DB and app have standard sqlite database and endpoint stuff. We have 3 classes for courses, reviews, and users. App.py supports most basic endpoints for the api plus the retriever (see above API spec section). Scripts holds the scraping scripts and is called on startup via the loader function.
 
 ### Contributors
 @yongjin0213
