@@ -2,7 +2,7 @@ version: '3'
 
 services:
   coursely:
-    image: "alexjoos/course-review:v1"
+    image: "alexjoos/course-review:vy"
     ports:
       - "8000:8000"
     # .env-file: .env

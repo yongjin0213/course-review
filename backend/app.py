@@ -25,6 +25,8 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
     run_pipeline()
+    print("DEBUG: Course count after run_pipeline =", Course.query.count())
+
 
 @app.route("/api/courses", methods=["GET"])
 def get_all_courses():
