@@ -10,6 +10,8 @@ db_folder = "instance"
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+os.makedirs(os.path.join(basedir, db_folder), exist_ok=True)
+
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///" + os.path.join(basedir, db_folder, db_filename)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -22,6 +24,9 @@ def failure_response(message, code=400):
 db.init_app(app)
 with app.app_context():
     db.create_all()
+    run_pipeline()
+    print("DEBUG: Course count after run_pipeline =", Course.query.count())
+
 
 @app.route("/api/courses", methods=["GET"])
 def get_all_courses():

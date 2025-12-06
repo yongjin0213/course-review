@@ -23,7 +23,11 @@ class Course(db.Model):
     credit = db.Column(db.Integer, nullable=False)
     ai_review = db.Column(db.String, nullable=True)
 
-    reviews = db.relationship("Review", cascade="delete")
+    reviews = db.relationship(
+        "Review",
+        cascade="delete",
+        back_populates="course"
+    )
     users = db.relationship("User", secondary=association_table, back_populates="courses")
 
     def serialize(self):
@@ -56,7 +60,9 @@ class Review(db.Model):
     content = db.Column(db.String, nullable=False) # The review itself (e.g. "Backend dev was so fun and productive!")
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
 
-    course = db.relationship("Course")
+    course = db.relationship(
+        "Course",
+        back_populates="reviews")
 
     def serialize(self):
         return {
