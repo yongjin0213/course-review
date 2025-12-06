@@ -24,20 +24,26 @@ From the root, the Frontend and backend directories contain their respective cod
 ### Setup
 After cloning the repo, either use docker or manually run with python:
 Docker-compose: (bash)
+```
 cd backend
 docker-compose up -d
 #from here you can run requests
+```
 
 DockerFile: (bash)
+```
 docker build -t course-review-backend ./backend
 docker run -p 8000:8000 course-review-backend
+```
 
 Python: (bash)
+```
 cd backend
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt 
 python3 app.py
+```
 
 By default the app runs on port 8000
 
