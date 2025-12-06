@@ -21,7 +21,7 @@ struct SearchView: View {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
         
         if trimmed.isEmpty {
-            return courseStore.courses
+            return courseStore.courses 
         } else {
             let text = trimmed.lowercased()
             return courseStore.courses.filter { course in

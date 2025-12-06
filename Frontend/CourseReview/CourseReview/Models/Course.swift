@@ -131,7 +131,7 @@ final class CourseStore: ObservableObject {
             
             let existingCodes = Set(remoteCourses.map { $0.code })
             let extraSamples = sampleCourses.filter { !existingCodes.contains($0.code) }
-            courses = extraSamples + remoteCourses
+            courses = remoteCourses
         } catch {
             print("Failed to fetch courses or reviews: \(error)")
         }
