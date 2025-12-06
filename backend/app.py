@@ -24,6 +24,7 @@ def failure_response(message, code=400):
 db.init_app(app)
 with app.app_context():
     db.create_all()
+    run_pipeline()
 
 @app.route("/api/courses", methods=["GET"])
 def get_all_courses():
