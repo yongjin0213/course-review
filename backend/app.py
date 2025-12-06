@@ -10,6 +10,8 @@ db_folder = "instance"
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+os.makedirs(os.path.join(basedir, db_folder), exist_ok=True)
+
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///" + os.path.join(basedir, db_folder, db_filename)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

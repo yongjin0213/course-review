@@ -1,9 +1,11 @@
-FROM python:3.7
+FROM python:3.10.5-slim
 
 RUN mkdir usr/app
 WORKDIR usr/app
 
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN mkdir -p instance
+
+RUN pip3 install -r requirements.txt
 CMD python app.py
