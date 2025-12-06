@@ -56,7 +56,7 @@ Data loading endpoint:
 @app.route("/api/admin/retrieve-data", methods=["POST"])
 This endpoint is an admin endpoint meant to load the scraped data from the scripts directory in backend. We have 3 implemented scripts to pull from the Rate My Professor (not implemented on frontend), CUReviews, and Class roster. Then this endpoint runs our loading pipeline and fills the SQLite database.
 
-### General setup
+### General structure (backend)
 
 We have 3 main parts of the backend: db.py, app.py, scripts/. DB and app have standard sqlite database and endpoint stuff. We have 3 classes for courses, reviews, and users. App.py supports most basic endpoints for the api plus the retriever (see above API spec section). Scripts holds the scraping scripts and is called on startup via the loader function.
 
