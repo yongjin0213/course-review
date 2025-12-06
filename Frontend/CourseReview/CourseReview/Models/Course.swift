@@ -17,8 +17,6 @@ struct Course: Identifiable {
     let term: String
     let department: String
     let credit: Int
-    let workloadScore: Double
-    let ratingScore: Double
     let reviewCount: Int
     let aiReview: String?
     var isBookmarked: Bool
@@ -33,8 +31,6 @@ let sampleCourses: [Course] = [
         term: "SP2026",
         department: "Computer Science",
         credit: 4,
-        workloadScore: 4.2,
-        ratingScore: 4.5,
         reviewCount: 83,
         aiReview: nil,
         isBookmarked: true
@@ -47,8 +43,6 @@ let sampleCourses: [Course] = [
         term: "SP2026",
         department: "Psychology",
         credit: 4,
-        workloadScore: 3.1,
-        ratingScore: 4.3,
         reviewCount: 61,
         aiReview: nil,
         isBookmarked: false
@@ -61,8 +55,6 @@ let sampleCourses: [Course] = [
         term: "SP2026",
         department: "Information Science",
         credit: 4,
-        workloadScore: 3.8,
-        ratingScore: 4.7,
         reviewCount: 24,
         aiReview: nil,
         isBookmarked: false
@@ -102,8 +94,19 @@ final class CourseStore: ObservableObject {
     
     func reloadFromServer() async {
         do {
-            let apiCourses = try await NetworkManager.shared.fetchCourses()
+            async let coursesTask = NetworkManager.shared.fetchCourses()
+            async let reviewsTask = NetworkManager.shared.fetchAllReviews()
+            
+            let apiCourses = try await coursesTask
+            let allReviews = try await reviewsTask
+            
             let storedCodes = UserDefaults.standard.stringArray(forKey: bookmarkDefaultsKey) ?? []
+            
+            let reviewCounts: [Int: Int] = Dictionary(
+                grouping: allReviews,
+                by: { $0.courseId }
+            ).mapValues { $0.count }
+            
             func department(from code: String) -> String {
                 let prefix = code.split(separator: " ").first.map(String.init) ?? ""
                 return prefix.isEmpty ? "Unknown" : prefix
@@ -120,18 +123,17 @@ final class CourseStore: ObservableObject {
                     term: sample?.term ?? "",
                     department: sample?.department ?? department(from: api.code),
                     credit: sample?.credit ?? 0,
-                    workloadScore: sample?.workloadScore ?? 0.0,
-                    ratingScore: sample?.ratingScore ?? 0.0,
-                    reviewCount: sample?.reviewCount ?? 0,
+                    reviewCount: reviewCounts[api.id] ?? 0,
                     aiReview: api.aiReview,
                     isBookmarked: storedCodes.contains(api.code)
                 )
             }
+            
             let existingCodes = Set(remoteCourses.map { $0.code })
             let extraSamples = sampleCourses.filter { !existingCodes.contains($0.code) }
             courses = extraSamples + remoteCourses
         } catch {
-            print("Failed to fetch courses: \(error)")
+            print("Failed to fetch courses or reviews: \(error)")
         }
     }
 }

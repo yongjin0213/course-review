@@ -203,11 +203,13 @@ struct CourseCardView: View {
                     background: Color(red: 0.88, green: 0.20, blue: 0.20),
                     textColor: .white
                 )
-                SmallTagView(
-                    text: course.term,
-                    background: Color(.systemGray5),
-                    textColor: .primary
-                )
+                if !course.term.isEmpty {
+                    SmallTagView(
+                        text: course.term,
+                        background: Color(.systemGray5),
+                        textColor: .primary
+                    )
+                }
                 Spacer()
                 Button(action: onBookmarkTapped) {
                     Image(systemName: course.isBookmarked ? "bookmark.fill" : "bookmark")
@@ -226,19 +228,9 @@ struct CourseCardView: View {
             
             HStack(spacing: 6) {
                 SmallTagView(
-                    text: "Workload \(String(format: "%.1f", course.workloadScore))",
-                    background: Color(red: 0.93, green: 0.98, blue: 0.93),
-                    textColor: Color(red: 0.12, green: 0.46, blue: 0.18)
-                )
-                SmallTagView(
                     text: "\(course.reviewCount) Reviews",
                     background: Color(red: 0.95, green: 0.96, blue: 0.99),
                     textColor: Color(red: 0.16, green: 0.35, blue: 0.77)
-                )
-                SmallTagView(
-                    text: "Rating \(String(format: "%.1f", course.ratingScore))",
-                    background: Color(red: 0.99, green: 0.93, blue: 0.93),
-                    textColor: Color(red: 0.75, green: 0.12, blue: 0.07)
                 )
             }
             .padding(.top, 4)

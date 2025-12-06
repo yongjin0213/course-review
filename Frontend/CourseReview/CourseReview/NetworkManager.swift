@@ -29,15 +29,13 @@ struct APIReview: Decodable {
     let id: Int
     let source: String
     let content: String
-    let rating: Int
-    let courseId: Int?
-    
+    let courseId: Int
+
     enum CodingKeys: String, CodingKey {
         case id
         case source
         case content
-        case rating
-        case courseId = "course_id"
+        case courseId = "course"
     }
 }
 
@@ -48,7 +46,7 @@ struct APIReviewsResponse: Decodable {
 final class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
-    private let baseURL = URL(string: "http://127.0.0.1:8000/api")!
+    private let baseURL = URL(string: "http://127.0.0.1:8000/api/")!
     
     func fetchCourses() async throws -> [APICourseSummary] {
         let url = baseURL.appendingPathComponent("courses")
@@ -68,6 +66,20 @@ final class NetworkManager {
         let url = baseURL
             .appendingPathComponent("reviews")
             .appendingPathComponent(String(courseId))
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let decoder = JSONDecoder()
+        let decoded = try decoder.decode(APIReviewsResponse.self, from: data)
+        return decoded.reviews
+    }
+    
+    func fetchAllReviews() async throws -> [APIReview] {
+        let url = baseURL.appendingPathComponent("reviews")
         
         let (data, response) = try await URLSession.shared.data(from: url)
         

@@ -21,7 +21,7 @@ struct CourseReviewApp: App {
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+    }() 
     
     @StateObject private var courseStore = CourseStore()
     

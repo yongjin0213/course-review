@@ -10,7 +10,6 @@ import SwiftUI
 struct CourseReview: Identifiable {
     let id: Int
     let source: String
-    let rating: Int
     let content: String
 }
 
@@ -77,11 +76,7 @@ struct CourseDetailView: View {
                     background: .black,
                     textColor: .white
                 )
-                SmallTagView(
-                    text: course.term,
-                    background: Color(.systemGray5),
-                    textColor: .primary
-                )
+                
                 Spacer()
                 Button {
                     courseStore.toggleBookmark(for: course)
@@ -161,11 +156,15 @@ struct CourseDetailView: View {
                 }
                 
             case .roster:
-                Text("Class roster data coming soon.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .padding(.top, 8)
-            }
+                        if let course = course {
+                            RosterCardView(course: course)
+                        } else {
+                            Text("No roster data available.")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .padding(.top, 8)
+                        }
+                    }
         }
     }
     
@@ -185,7 +184,6 @@ struct CourseDetailView: View {
                     CourseReview(
                         id: api.id,
                         source: api.source,
-                        rating: api.rating,
                         content: api.content
                     )
                 }
@@ -209,7 +207,6 @@ struct ReviewCardView: View {
                 Text(review.source)
                     .font(.subheadline.weight(.semibold))
                 Spacer()
-                Text("Rating: \(review.rating)")
                     .font(.subheadline)
             }
             
@@ -221,5 +218,49 @@ struct ReviewCardView: View {
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 3)
+    }
+}
+
+struct RosterCardView: View {
+    let course: Course
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Course Roster")
+                .font(.headline)
+            
+            Divider()
+            
+            infoRow(label: "Code", value: course.code)
+            infoRow(label: "Title", value: course.title)
+            infoRow(label: "Instructor", value: course.instructor.isEmpty ? "TBA" : course.instructor)
+            infoRow(label: "Term", value: course.term.isEmpty ? "TBA" : course.term)
+            infoRow(label: "Credits", value: course.credit == 0 ? "TBA" : "\(course.credit)")
+            infoRow(label: "Department", value: course.department)
+            
+            if let summary = course.aiReview, !summary.isEmpty {
+                Divider()
+                Text("AI Summary")
+                    .font(.subheadline.weight(.semibold))
+                Text(summary)
+                    .font(.subheadline)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(16)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 3)
+    }
+    
+    private func infoRow(label: String, value: String) -> some View {
+        HStack {
+            Text(label)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            Spacer()
+            Text(value)
+                .font(.subheadline)
+        }
     }
 }
